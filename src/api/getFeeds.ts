@@ -3,7 +3,7 @@ import { PostType } from "@/components/Post";
 export type FeedType = {
     feed: PostType[];
 };
-async function gatFeeds(): Promise<FeedType>{
+export async function getFeeds(): Promise<FeedType> {
     const feed = [
         {
             id: "1",

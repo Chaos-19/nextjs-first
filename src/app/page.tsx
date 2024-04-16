@@ -1,11 +1,11 @@
+import { FeedType, getFeeds } from "@/api/getFeeds";
 import Post, { PostType } from "@/components/Post";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
+
 
 
 export default async function Home() {
 
-  const feeds = await gatFeeds() as { feed: PostType[] };
+  const feeds: FeedType = await getFeeds();
 
   return (
     <main className="w-full h-full">
