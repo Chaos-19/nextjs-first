@@ -1,4 +1,9 @@
-async function gatFeeds() {
+import { PostType } from "@/components/Post";
+
+export type FeedType = {
+    feed: PostType[];
+};
+async function gatFeeds(): Promise<FeedType>{
     const feed = [
         {
             id: "1",
