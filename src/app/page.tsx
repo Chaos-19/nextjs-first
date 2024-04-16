@@ -2,18 +2,8 @@ import Post from "@/components/Post";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
-export type PostType = {
-  id: string;
-  title: string;
-  author: {
-    name: string;
-    email: string;
-  } | null;
-  content: string;
-  published: boolean;
-};
 
-export function gatFeeds(): Promise<{ feed: PostType[] }> {
+export function gatFeeds() {
   const feed = [
     {
       id: "1",
@@ -32,7 +22,7 @@ export function gatFeeds(): Promise<{ feed: PostType[] }> {
 
 export default async function Home() {
 
-  const feeds: { feed: PostType[] } = await gatFeeds();
+  const feeds = await gatFeeds() as { feed: PostType[] };
 
 
 

@@ -1,6 +1,17 @@
-import { PostType } from '@/app/page'
+
 import ReactMarkDown from 'react-markdown'
 
+
+export type PostType = {
+    id: string;
+    title: string;
+    author: {
+        name: string;
+        email: string;
+    } | null;
+    content: string;
+    published: boolean;
+}
 
 const Post = ({ title, author = { name: "Unknown", email: "Unknown" }, content }: PostType) => {
 
