@@ -1,4 +1,4 @@
-import { FeedType, getFeeds } from "@/api/getFeeds";
+import { FeedType,  } from "@/api/getFeeds";
 import Post, { PostType } from "@/components/Post";
 
 
