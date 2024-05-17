@@ -1,5 +1,5 @@
 import React from 'react'
-export default function POST(request: Request) {
+export function POST(request: Request) {
 
     console.log(request.body)
 
