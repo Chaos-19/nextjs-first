@@ -1,18 +1,46 @@
 import Post, { PostType } from "@/components/Post";
-import getFeeds, { FeedType } from "./api/getFeeds";
+
+import { prisma } from "@/lib/prisma";
+import { Suspense } from "react";
+
+
+
+async function SinglePost({ params }: { params: { id: string } }) {
+
+  const post = await prisma.post.findUnique({
+    where: {
+      id: String(params?.id),
+    },
+    include: {
+      author: {
+        select: {
+          name: true,
+          email: true
+        },
+      },
+    },
+  }) as PostType;
+
+
+
+  return <Post {...post} />
+}
 
 export default async function Home() {
 
-  const posts: FeedType = await getFeeds();
+  const feeds = await prisma.post.findMany();
+
 
   return (
     <main className="w-full h-full">
       <div className="p-4">
         <h1 className="text-2xl font-black capitalize">public feed</h1>
-        <div className="pt-4">
-          {
-            posts?.feed.map((post) => <Post key={post.id} {...post} />)
-          }
+        <div className="pt-4 flex flex-col gap-3">
+          <Suspense fallback={<div>Loading...</div>}>
+            {
+              feeds.map((post) => <SinglePost params={{ id: post.id }} key={post.id} {...post} />)
+            }
+          </Suspense>
         </div>
       </div>
     </main>
